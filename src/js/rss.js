@@ -86,11 +86,12 @@ export const editRssLink = (rssLink, rssLinkId, editId) => {
 export const getRssLinksPreview = async () => {
     try {
         const preview = await fetch('/rss/parsed/email', {
-            method: 'get'
+            method: 'get',
+            headers: { 'Content-Type' : 'text/html' }
         });
-        const result = await preview;
+        const result = await preview.text();
         console.log(result);
-        // return await preview.json();        
+        $('#email-preview').html(result)    
     } catch (error) {
         console.log(error)
         console.error('RssPreview: ', error.message);

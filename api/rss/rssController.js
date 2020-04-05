@@ -25,7 +25,8 @@ const getRssEmailContent = async (req, res) => {
             rssData.forEach(rssLink => {
                 emailToSend += formatToHTML(rssLink.title, rssLink.content);
             })
-            res.send(emailToSend)
+            res.set('Content-Type', 'text/html')
+            res.status(200).send(emailToSend);
         }
     } catch (error) {
         console.error(error)

@@ -205,33 +205,36 @@ var getRssLinksPreview = function getRssLinksPreview() {
           _context5.prev = 0;
           _context5.next = 3;
           return regeneratorRuntime.awrap(fetch('/rss/parsed/email', {
-            method: 'get'
+            method: 'get',
+            headers: {
+              'Content-Type': 'text/html'
+            }
           }));
 
         case 3:
           preview = _context5.sent;
           _context5.next = 6;
-          return regeneratorRuntime.awrap(preview);
+          return regeneratorRuntime.awrap(preview.text());
 
         case 6:
           result = _context5.sent;
-          console.log(result); // return await preview.json();        
-
-          _context5.next = 14;
+          console.log(result);
+          $('#email-preview').html(result);
+          _context5.next = 15;
           break;
 
-        case 10:
-          _context5.prev = 10;
+        case 11:
+          _context5.prev = 11;
           _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
           console.error('RssPreview: ', _context5.t0.message);
 
-        case 14:
+        case 15:
         case "end":
           return _context5.stop();
       }
     }
-  }, null, null, [[0, 10]]);
+  }, null, null, [[0, 11]]);
 };
 
 exports.getRssLinksPreview = getRssLinksPreview;

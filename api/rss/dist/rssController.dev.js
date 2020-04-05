@@ -63,7 +63,8 @@ var getRssEmailContent = function getRssEmailContent(req, res) {
             rssData.forEach(function (rssLink) {
               emailToSend += formatToHTML(rssLink.title, rssLink.content);
             });
-            res.send(emailToSend);
+            res.set('Content-Type', 'text/html');
+            res.status(200).send(emailToSend);
           }
 
           _context2.next = 15;
