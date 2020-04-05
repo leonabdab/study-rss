@@ -1,0 +1,1 @@
+"use strict";var mongoose=require("mongoose"),rssSchema=mongoose.Schema({}),rssModel=mongoose.model("Rss",rssSchema,"user");module.exports=rssModel;

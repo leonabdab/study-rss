@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSS</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>RSS App</h1>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center title">
+        <h1></h1>
+      </div>
+      <form id="rss-email-form" method="POST">
+        <div class="row form-group rss-add">
+          <div class="col-4 rss-add__link">
+            <input class="form-control rss__link" id="rss-input" type="text" placeholder="Insert RSS link" />
+          </div>
+          <div class="col-4 email-add">
+            <input type="email" class="form-control email__input" id="email" placeholder="Email">
+          </div>
+          <div class="col-4 rss-add__submit">
+            <button id="save" class="btn btn-secondary" type="submit">Save</button>
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="list-group" id="rss-list">
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 card">
+          <div class="card-body">
+            <h5 class="card-title">Email Preview</h5>
+            <p id="email-preview" class="card-text"></p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center send-email">
+        <button id="send" class="col-4 btn btn-primary" type="submit">Send</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script type="module" src="/js/script.js"></script>
+</body>
+
+</html>

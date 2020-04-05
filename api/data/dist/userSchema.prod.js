@@ -1,0 +1,1 @@
+"use strict";var mongoose=require("mongoose"),userSchema=mongoose.Schema({email:{type:String,required:!0},rss:{type:String,required:!0}}),userModel=mongoose.model("User",userSchema,"user");module.exports=userModel;
