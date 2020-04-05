@@ -21,11 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes.email, emailRouter);
 app.use(routes.rss, rssRouter);
 app.use(routes.data, dataRouter);
-/*
-app.get(routes.main, (req, res) => {
-    res.sendFile(path.join(__dirname, './dist/index.html'));
-});
-*/
+
 app.listen(PORT, () => {
     console.log(`server running on ${PORT}...`)
 });
