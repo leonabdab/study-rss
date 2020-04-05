@@ -15,15 +15,7 @@ h1 {
     align-items: center;
 }
 
-.preview-action {
-    margin-left: 10px;
-    padding: 7px;
-    background-color: lightgrey;
-    border-radius: 5px;
-    margin-bottom: .5rem;
-    cursor: pointer;
-}
-
-.preview-action.hidden {
-    display: none;
+.card-text {
+    max-height: 20vh;
+    overflow: scroll;
 }
