@@ -90,7 +90,6 @@ export const getRssLinksPreview = async () => {
             headers: { 'Content-Type' : 'text/html' }
         });
         const result = await preview.text();
-        console.log(result);
         $('#email-preview').html(result)    
     } catch (error) {
         console.log(error)

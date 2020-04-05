@@ -1,1 +1,0 @@
-"use strict";var mongoose=require("mongoose"),validateEmail=function(e){return/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i.test(e)},schema=mongoose.Schema({email:{type:String,trim:!0,lowercase:!0,validate:[validateEmail,"Error: Invalid email address"]},rss:{type:String}}),model=mongoose.model("user-data",schema,"data");module.exports=model;

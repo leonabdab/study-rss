@@ -1,1 +1,0 @@
-"use strict";var formatToEmail=function(o,t){var a="<h2>".concat(o,"</h2>");return t.forEach(function(o){a+="<p>".concat(o,"</p>")}),a};module.exports=formatToEmail;

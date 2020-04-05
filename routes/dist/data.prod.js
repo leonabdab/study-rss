@@ -1,1 +1,0 @@
-"use strict";var express=require("express"),router=express.Router(),dataController=require("../api/data/dataController");router.use(express.json()),router.get("/",function(r,e){return dataController.get(r,e)}),router.get("/all",function(r,e){return dataController.getAll(r,e)}),router.post("/",function(r,e,t){return dataController.post(r,e,t)}),module.exports=router;
