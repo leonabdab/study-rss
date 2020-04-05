@@ -21,16 +21,13 @@ app.use(express.json());
 db.connect();
 var PORT = process.env.PORT || 3000;
 app.use(cors());
-app.use(express["static"](path.join(__dirname, 'public')));
+app.use(express["static"](path.join(__dirname, 'src')));
 app.use(routes.email, emailRouter);
 app.use(routes.rss, rssRouter);
 app.use(routes.data, dataRouter);
-/*
-app.get(routes.main, (req, res) => {
-    res.sendFile(path.join(__dirname, './dist/index.html'));
+app.get(routes.main, function (req, res) {
+  res.sendFile(path.join(__dirname, './dist/index.html'));
 });
-*/
-
 app.listen(PORT, function () {
   console.log("server running on ".concat(PORT, "..."));
 });

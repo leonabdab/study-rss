@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": ""
+    "start-dev": "npm build && node app.js",
+    "start": "cross-env NODE_ENV=production npm run start-dev"
   },
   "keywords": [],
   "author": "",
@@ -22,9 +23,7 @@
     "mjml": "^4.6.2",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.6",
-    "rss-parser": "^3.7.6"
-  },
-  "devDependencies": {
+    "rss-parser": "^3.7.6",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "babel-loader": "^8.1.0",
