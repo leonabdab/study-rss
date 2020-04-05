@@ -31,6 +31,8 @@ const getRssEmailContent = async (req, res) => {
             res.status(200).send(emailToSend);
         }
     } catch (error) {
+        res.set('Content-Type', 'text/html')
+        res.status(500).send(error);
         console.error(error)
         console.error('RssGet: ', error.message);
     }

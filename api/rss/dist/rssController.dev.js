@@ -70,16 +70,18 @@ var getRssEmailContent = function getRssEmailContent(req, res) {
             res.status(200).send(emailToSend);
           }
 
-          _context2.next = 15;
+          _context2.next = 17;
           break;
 
         case 11:
           _context2.prev = 11;
           _context2.t0 = _context2["catch"](0);
+          res.set('Content-Type', 'text/html');
+          res.status(500).send(_context2.t0);
           console.error(_context2.t0);
           console.error('RssGet: ', _context2.t0.message);
 
-        case 15:
+        case 17:
         case "end":
           return _context2.stop();
       }
