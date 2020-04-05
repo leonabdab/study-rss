@@ -1,6 +1,7 @@
 const DbSchema = require('../schema');
 const parseRss = require('../../app-modules/parse-rss');
 const formatToHTML = require('../../app-modules/format-email');
+const sendMail = require('../../app-modules/send-mail');
 
 const getDataFromSchema = () => {
     return DbSchema.find().select({
@@ -25,6 +26,7 @@ const getRssEmailContent = async (req, res) => {
             rssData.forEach(rssLink => {
                 emailToSend += formatToHTML(rssLink.title, rssLink.content);
             })
+            sendMail('marta.gorlicka@gmail.com', emailToSend)
             res.set('Content-Type', 'text/html')
             res.status(200).send(emailToSend);
         }

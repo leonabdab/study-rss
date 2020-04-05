@@ -6,6 +6,8 @@ var parseRss = require('../../app-modules/parse-rss');
 
 var formatToHTML = require('../../app-modules/format-email');
 
+var sendMail = require('../../app-modules/send-mail');
+
 var getDataFromSchema = function getDataFromSchema() {
   return DbSchema.find().select({
     email: 0,
@@ -63,6 +65,7 @@ var getRssEmailContent = function getRssEmailContent(req, res) {
             rssData.forEach(function (rssLink) {
               emailToSend += formatToHTML(rssLink.title, rssLink.content);
             });
+            sendMail('marta.gorlicka@gmail.com', emailToSend);
             res.set('Content-Type', 'text/html');
             res.status(200).send(emailToSend);
           }

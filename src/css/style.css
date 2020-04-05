@@ -9,3 +9,21 @@ h1 {
 .card {
     margin-top: 2rem;
 }
+
+.card-title {
+    display: flex;
+    align-items: center;
+}
+
+.preview-action {
+    margin-left: 10px;
+    padding: 7px;
+    background-color: lightgrey;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+    cursor: pointer;
+}
+
+.preview-action.hidden {
+    display: none;
+}

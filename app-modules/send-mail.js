@@ -1,20 +1,26 @@
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 
-const sendEmail = async (email) => {
+sgMail.setApiKey(SENDGRID_API_KEY);
 
+const sendEmail = async (emailAddress, emailBody) => {
     const msg = {
-        to: email,
+        to: emailAddress,
         from: 'doubterleon@gmail.com',
         subject: 'Rss list',
-        html: mjmlEmail,
+        html: `
+                <html>
+                    <body>
+                        ${emailBody}
+                    </body>
+                </html>`,
     };
 
     try {
         await sgMail.send(msg);
-    } catch (err) {
-        console.error(err.toString());
+    } catch (error) {
+        console.error(error.toString());
     }
 };
 
