@@ -19,7 +19,6 @@ export const postData = async () => {
             email: email.val()
         });
 
-        console.log(reqValues)
         const response = await fetch('/user', {
             method: 'post',
             headers: {
