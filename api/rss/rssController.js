@@ -1,7 +1,4 @@
 const DbSchema = require('../schema');
-const parseRss = require('../../app-modules/parse-rss');
-const formatToHTML = require('../../app-modules/format-email');
-const sendMail = require('../../app-modules/send-mail');
 
 const getDataFromSchema = () => {
     return DbSchema.find().select({
@@ -16,25 +13,6 @@ const get = async (req, res) => {
         console.error('RssGet: ', error.message);
     }
 }
-
-// const getRssEmailContent = async (req, res) => {
-//     try {
-//         const data = await getDataFromSchema();
-//         const rssData = await Promise.all(parseRss(data));
-//         let emailToSend = '';
-//         if (rssData) {
-//             rssData.forEach(rssLink => {
-//                 emailToSend += formatToHTML(rssLink.title, rssLink.content);
-//             })
-//             sendMail('marta.gorlicka@gmail.com', emailToSend)
-//             res.set('Content-Type', 'text/html')
-//             res.status(200).send(emailToSend);
-//         }
-//     } catch (error) {
-//         console.error(error)
-//         console.error('RssGet: ', error.message);
-//     }
-// }
 
 const put = async (req, res) => {
     try {
@@ -99,5 +77,4 @@ module.exports = {
     put,
     post,
     deleteRss,
-    // getRssEmailContent
 }

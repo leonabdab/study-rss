@@ -62,22 +62,19 @@ const parseAndSendEmail = async (req, res) => {
             userData.email = data.email;
             userData.rss.push(data.rss)
         });
-        console.log(userData.rss)
 
         const rssData = await Promise.all(parseRss(userData.rss));
-        
         let emailToSend = '';
         if (rssData) {
             rssData.forEach(rssLink => {
                 emailToSend += formatToHTML(rssLink.title, rssLink.content);
             })
-            sendMail('marta.gorlicka@gmail.com', emailToSend)
+            sendMail(userData.email, emailToSend)
             res.set('Content-Type', 'text/html')
             res.status(200).send(emailToSend);
         }
     } catch (e) {
-        console.log(e)
-        // console.error('UserGetError: ', e.message);
+        console.error('UserGetError: ', e.message);
     }
 }
 

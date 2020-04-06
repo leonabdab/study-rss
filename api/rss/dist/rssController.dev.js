@@ -2,12 +2,6 @@
 
 var DbSchema = require('../schema');
 
-var parseRss = require('../../app-modules/parse-rss');
-
-var formatToHTML = require('../../app-modules/format-email');
-
-var sendMail = require('../../app-modules/send-mail');
-
 var getDataFromSchema = function getDataFromSchema() {
   return DbSchema.find().select({
     email: 0,
@@ -40,25 +34,7 @@ var get = function get(req, res) {
       }
     }
   }, null, null, [[0, 8]]);
-}; // const getRssEmailContent = async (req, res) => {
-//     try {
-//         const data = await getDataFromSchema();
-//         const rssData = await Promise.all(parseRss(data));
-//         let emailToSend = '';
-//         if (rssData) {
-//             rssData.forEach(rssLink => {
-//                 emailToSend += formatToHTML(rssLink.title, rssLink.content);
-//             })
-//             sendMail('marta.gorlicka@gmail.com', emailToSend)
-//             res.set('Content-Type', 'text/html')
-//             res.status(200).send(emailToSend);
-//         }
-//     } catch (error) {
-//         console.error(error)
-//         console.error('RssGet: ', error.message);
-//     }
-// }
-
+};
 
 var put = function put(req, res) {
   var id, _ref, rss, newRss;
@@ -204,6 +180,5 @@ module.exports = {
   get: get,
   put: put,
   post: post,
-  deleteRss: deleteRss // getRssEmailContent
-
+  deleteRss: deleteRss
 };

@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 
 
 const validateEmail = (email) => {
-    const re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i;
+    const re = /^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/i;
     return re.test(email);
 }
-
+const validateRss = (rss) => {
+    const re = /^http.*/i;
+    return re.test(rss);
+}
 const schema = mongoose.Schema({
     email: {
         type: String,
@@ -16,7 +19,7 @@ const schema = mongoose.Schema({
     },
     rss: {
         type: String,
-        // match: /^http.*/i
+        validate: [validateRss, 'Error: Invalid link']
     }
 });
 

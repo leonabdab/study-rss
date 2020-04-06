@@ -5,7 +5,7 @@ import {
     rssList
 } from './rss.js';
 import {
-    makeEmailReadOnly
+    makeEmailReadOnly,
 } from './email.js';
 
 const email = $('#email');
@@ -14,11 +14,12 @@ const contentType = "application/json; charset=utf-8";
 
 export const postData = async () => {
     try {
+        const emailAddress = getStoredEmail(email.val());
         const reqValues = JSON.stringify({
             rss: rssInput.val(),
-            email: email.val()
+            email: emailAddress
         });
-        const response = await fetch('/user', {
+        const response = fetch('/user', {
             method: 'post',
             headers: {
                 'Content-Type': contentType
@@ -100,7 +101,6 @@ export const getRssLinksPreview = async () => {
             previewTag.html('<h2>Nothing to send</h2>')
         }
     } catch (error) {
-        console.log(error)
         console.error('RssPreview: ', error.message);
     }
 }
@@ -114,4 +114,16 @@ const displayRssLinkList = (data) => {
             deleteRssLink(rssLink, ids.rssListItemId, ids.deleteId);
         }
     })
+}
+
+
+export const getStoredEmail = async (email) => {
+    const emails = await getAllData();
+    const emailAdresses = emails.map(emailObj => emailObj.email);
+    const storedEmail = emailAdresses[0];
+    if (emailAdresses.indexOf(email) < 0 && !emailAdresses) {
+        alert(`Database already has stored email address: ${storedEmail}`);
+        return storedEmail;
+    } 
+    return email;
 }
