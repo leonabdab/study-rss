@@ -17,26 +17,24 @@ const get = async (req, res) => {
     }
 }
 
-const getRssEmailContent = async (req, res) => {
-    try {
-        const data = await getDataFromSchema();
-        const rssData = await Promise.all(parseRss(data));
-        let emailToSend = '';
-        if (rssData) {
-            rssData.forEach(rssLink => {
-                emailToSend += formatToHTML(rssLink.title, rssLink.content);
-            })
-            sendMail('marta.gorlicka@gmail.com', emailToSend)
-            res.set('Content-Type', 'text/html')
-            res.status(200).send(emailToSend);
-        }
-    } catch (error) {
-        res.set('Content-Type', 'text/html')
-        res.status(500).send(error);
-        console.error(error)
-        console.error('RssGet: ', error.message);
-    }
-}
+// const getRssEmailContent = async (req, res) => {
+//     try {
+//         const data = await getDataFromSchema();
+//         const rssData = await Promise.all(parseRss(data));
+//         let emailToSend = '';
+//         if (rssData) {
+//             rssData.forEach(rssLink => {
+//                 emailToSend += formatToHTML(rssLink.title, rssLink.content);
+//             })
+//             sendMail('marta.gorlicka@gmail.com', emailToSend)
+//             res.set('Content-Type', 'text/html')
+//             res.status(200).send(emailToSend);
+//         }
+//     } catch (error) {
+//         console.error(error)
+//         console.error('RssGet: ', error.message);
+//     }
+// }
 
 const put = async (req, res) => {
     try {
@@ -101,5 +99,5 @@ module.exports = {
     put,
     post,
     deleteRss,
-    getRssEmailContent
+    // getRssEmailContent
 }

@@ -2,7 +2,7 @@ const Parser = require('rss-parser');
 rssParser = new Parser();
 
 const parseRss = data => data.map(async rssLink => {
-    const feed = await rssParser.parseURL(rssLink.rss);
+    const feed = await rssParser.parseURL(rssLink);
     const emailContent = {
         title: feed.title,
         content: []

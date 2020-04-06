@@ -1,10 +1,9 @@
 import {
     postData,
-    getAllData
-} from './data.js';
-import {
- getRssLinksPreview
-} from './rss.js'
+    getAllData,
+    getRssLinksPreview
+} from './user.js';
+
 
 $(document).ready(() => {
 
@@ -15,11 +14,9 @@ $(document).ready(() => {
     form.submit((e) => {
         e.preventDefault();
         postData();
-    });   
+    });
 });
 
 $('#send').click(() => {
-    const preview = (async () => await getRssLinksPreview())();
-    // console.log(preview)
-//    $('#email-preview').html(getRssLinksPreview());
+    (async () => await getRssLinksPreview())();
 });

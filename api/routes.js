@@ -2,7 +2,7 @@ const routes = {
     main: '/',
     rss: '/rss',
     email: '/email',
-    data: '/data'
+    user: '/user'
 }
 
 module.exports = routes;

@@ -40,85 +40,56 @@ var get = function get(req, res) {
       }
     }
   }, null, null, [[0, 8]]);
-};
+}; // const getRssEmailContent = async (req, res) => {
+//     try {
+//         const data = await getDataFromSchema();
+//         const rssData = await Promise.all(parseRss(data));
+//         let emailToSend = '';
+//         if (rssData) {
+//             rssData.forEach(rssLink => {
+//                 emailToSend += formatToHTML(rssLink.title, rssLink.content);
+//             })
+//             sendMail('marta.gorlicka@gmail.com', emailToSend)
+//             res.set('Content-Type', 'text/html')
+//             res.status(200).send(emailToSend);
+//         }
+//     } catch (error) {
+//         console.error(error)
+//         console.error('RssGet: ', error.message);
+//     }
+// }
 
-var getRssEmailContent = function getRssEmailContent(req, res) {
-  var data, rssData, emailToSend;
-  return regeneratorRuntime.async(function getRssEmailContent$(_context2) {
-    while (1) {
-      switch (_context2.prev = _context2.next) {
-        case 0:
-          _context2.prev = 0;
-          _context2.next = 3;
-          return regeneratorRuntime.awrap(getDataFromSchema());
-
-        case 3:
-          data = _context2.sent;
-          _context2.next = 6;
-          return regeneratorRuntime.awrap(Promise.all(parseRss(data)));
-
-        case 6:
-          rssData = _context2.sent;
-          emailToSend = '';
-
-          if (rssData) {
-            rssData.forEach(function (rssLink) {
-              emailToSend += formatToHTML(rssLink.title, rssLink.content);
-            });
-            sendMail('marta.gorlicka@gmail.com', emailToSend);
-            res.set('Content-Type', 'text/html');
-            res.status(200).send(emailToSend);
-          }
-
-          _context2.next = 17;
-          break;
-
-        case 11:
-          _context2.prev = 11;
-          _context2.t0 = _context2["catch"](0);
-          res.set('Content-Type', 'text/html');
-          res.status(500).send(_context2.t0);
-          console.error(_context2.t0);
-          console.error('RssGet: ', _context2.t0.message);
-
-        case 17:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  }, null, null, [[0, 11]]);
-};
 
 var put = function put(req, res) {
   var id, _ref, rss, newRss;
 
-  return regeneratorRuntime.async(function put$(_context3) {
+  return regeneratorRuntime.async(function put$(_context2) {
     while (1) {
-      switch (_context3.prev = _context3.next) {
+      switch (_context2.prev = _context2.next) {
         case 0:
-          _context3.prev = 0;
+          _context2.prev = 0;
           id = req.params.id;
-          _context3.next = 4;
+          _context2.next = 4;
           return regeneratorRuntime.awrap(req.body);
 
         case 4:
-          _ref = _context3.sent;
+          _ref = _context2.sent;
           rss = _ref.rss;
 
           if (id) {
-            _context3.next = 8;
+            _context2.next = 8;
             break;
           }
 
-          return _context3.abrupt("return", res.status(404).send("Error: id: ".concat(id, " not found")));
+          return _context2.abrupt("return", res.status(404).send("Error: id: ".concat(id, " not found")));
 
         case 8:
           if (!rss) {
-            _context3.next = 13;
+            _context2.next = 13;
             break;
           }
 
-          _context3.next = 11;
+          _context2.next = 11;
           return regeneratorRuntime.awrap(DbSchema.findByIdAndUpdate(id, {
             $set: {
               rss: rss
@@ -128,21 +99,21 @@ var put = function put(req, res) {
           }));
 
         case 11:
-          newRss = _context3.sent;
+          newRss = _context2.sent;
           res.json(newRss);
 
         case 13:
-          _context3.next = 18;
+          _context2.next = 18;
           break;
 
         case 15:
-          _context3.prev = 15;
-          _context3.t0 = _context3["catch"](0);
-          console.error('RssPut: ', _context3.t0.message);
+          _context2.prev = 15;
+          _context2.t0 = _context2["catch"](0);
+          console.error('RssPut: ', _context2.t0.message);
 
         case 18:
         case "end":
-          return _context3.stop();
+          return _context2.stop();
       }
     }
   }, null, null, [[0, 15]]);
@@ -150,41 +121,41 @@ var put = function put(req, res) {
 
 var post = function post(req, res, next) {
   var rss, newRss, response;
-  return regeneratorRuntime.async(function post$(_context4) {
+  return regeneratorRuntime.async(function post$(_context3) {
     while (1) {
-      switch (_context4.prev = _context4.next) {
+      switch (_context3.prev = _context3.next) {
         case 0:
-          _context4.prev = 0;
+          _context3.prev = 0;
           rss = req.body.rss;
 
           if (!rss) {
-            _context4.next = 8;
+            _context3.next = 8;
             break;
           }
 
           newRss = new DbSchema({
             rss: rss
           });
-          _context4.next = 6;
+          _context3.next = 6;
           return regeneratorRuntime.awrap(newRss.save());
 
         case 6:
-          response = _context4.sent;
+          response = _context3.sent;
           res.json(response);
 
         case 8:
           next();
-          _context4.next = 14;
+          _context3.next = 14;
           break;
 
         case 11:
-          _context4.prev = 11;
-          _context4.t0 = _context4["catch"](0);
-          console.error('RssPost: ', _context4.t0.message);
+          _context3.prev = 11;
+          _context3.t0 = _context3["catch"](0);
+          console.error('RssPost: ', _context3.t0.message);
 
         case 14:
         case "end":
-          return _context4.stop();
+          return _context3.stop();
       }
     }
   }, null, null, [[0, 11]]);
@@ -192,38 +163,38 @@ var post = function post(req, res, next) {
 
 var deleteRss = function deleteRss(req, res) {
   var id, deletedRss;
-  return regeneratorRuntime.async(function deleteRss$(_context5) {
+  return regeneratorRuntime.async(function deleteRss$(_context4) {
     while (1) {
-      switch (_context5.prev = _context5.next) {
+      switch (_context4.prev = _context4.next) {
         case 0:
-          _context5.prev = 0;
+          _context4.prev = 0;
           id = req.params.id;
 
           if (id) {
-            _context5.next = 4;
+            _context4.next = 4;
             break;
           }
 
-          return _context5.abrupt("return", res.status(404).send("Error: id: ".concat(id, " not found")));
+          return _context4.abrupt("return", res.status(404).send("Error: id: ".concat(id, " not found")));
 
         case 4:
-          _context5.next = 6;
+          _context4.next = 6;
           return regeneratorRuntime.awrap(DbSchema.findByIdAndRemove(id));
 
         case 6:
-          deletedRss = _context5.sent;
+          deletedRss = _context4.sent;
           res.json(deletedRss);
-          _context5.next = 13;
+          _context4.next = 13;
           break;
 
         case 10:
-          _context5.prev = 10;
-          _context5.t0 = _context5["catch"](0);
-          console.error('RssDelete: ', _context5.t0.message);
+          _context4.prev = 10;
+          _context4.t0 = _context4["catch"](0);
+          console.error('RssDelete: ', _context4.t0.message);
 
         case 13:
         case "end":
-          return _context5.stop();
+          return _context4.stop();
       }
     }
   }, null, null, [[0, 10]]);
@@ -233,6 +204,6 @@ module.exports = {
   get: get,
   put: put,
   post: post,
-  deleteRss: deleteRss,
-  getRssEmailContent: getRssEmailContent
+  deleteRss: deleteRss // getRssEmailContent
+
 };

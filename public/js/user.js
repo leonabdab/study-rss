@@ -18,7 +18,7 @@ export const postData = async () => {
             rss: rssInput.val(),
             email: email.val()
         });
-        const response = await fetch('/data', {
+        const response = await fetch('/user', {
             method: 'post',
             headers: {
                 'Content-Type': contentType
@@ -41,7 +41,7 @@ export const postData = async () => {
 
 export const getRssEmailData = async () => {
     try {
-        const response = await fetch('/data', {
+        const response = await fetch('/user', {
             method: 'get'
         });
         const data = await response.json();
@@ -55,7 +55,7 @@ export const getRssEmailData = async () => {
 
 export const getAllData = async () => {
     try {
-        const response = await fetch('/data/all', {
+        const response = await fetch('/user/all', {
             method: 'get'
         });
         const data = await response.json();
@@ -82,6 +82,27 @@ const linkTemplate = (rssLink, ids) => {
         </div>
       </div>
     </li>`
+}
+
+export const getRssLinksPreview = async () => {
+    try {
+        const preview = await fetch('/user/parser/email', {
+            method: 'get',
+            headers: {
+                'Content-Type': 'text/html'
+            }
+        });
+        const result = await preview.text();
+        const previewTag = $('#email-preview');
+        if (result) {
+            previewTag.html(result)
+        } else {
+            previewTag.html('<h2>Nothing to send</h2>')
+        }
+    } catch (error) {
+        console.log(error)
+        console.error('RssPreview: ', error.message);
+    }
 }
 
 const displayRssLinkList = (data) => {
