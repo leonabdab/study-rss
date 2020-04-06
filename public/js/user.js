@@ -19,7 +19,7 @@ export const postData = async () => {
             rss: rssInput.val(),
             email: emailAddress
         });
-        const response = fetch('/user', {
+        const response = await fetch('/user', {
             method: 'post',
             headers: {
                 'Content-Type': contentType
