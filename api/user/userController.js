@@ -33,10 +33,6 @@ const get = async (req, res) => {
 const getAllUserData = async (req, res) => {
     const query = req.query;
         const response = await DbSchema.find(query);
-
-        if (JSON.stringify(response) === '[]') {
-            res.status('404').send('Error: resource not found');
-        }
         return response;
 }
 

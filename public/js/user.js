@@ -14,11 +14,12 @@ const contentType = "application/json; charset=utf-8";
 
 export const postData = async () => {
     try {
-        const emailAddress = getStoredEmail(email.val());
         const reqValues = JSON.stringify({
             rss: rssInput.val(),
-            email: emailAddress
+            email: email.val()
         });
+
+        console.log(reqValues)
         const response = await fetch('/user', {
             method: 'post',
             headers: {
@@ -114,16 +115,4 @@ const displayRssLinkList = (data) => {
             deleteRssLink(rssLink, ids.rssListItemId, ids.deleteId);
         }
     })
-}
-
-
-export const getStoredEmail = async (email) => {
-    const emails = await getAllData();
-    const emailAdresses = emails.map(emailObj => emailObj.email);
-    const storedEmail = emailAdresses[0];
-    if (emailAdresses.indexOf(email) < 0 && !emailAdresses) {
-        alert(`Database already has stored email address: ${storedEmail}`);
-        return storedEmail;
-    } 
-    return email;
 }
